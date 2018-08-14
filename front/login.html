@@ -7,9 +7,11 @@
 
     <!-- Mayer's CSS Reset -->
     <link rel="stylesheet" href="css/reset.css">
-    
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/form.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -23,24 +25,30 @@
 
 <body>
     <div class="container">
-        <div class="page-header">
+        <div id="form-panel">
             <div class="text-center">
-                <h1>Login</h1>
+                <h2 class="text-primary">Login</h2>
             </div>
-
-        </div>
             <form method="post">
                 <div class="form-group">
-                    <label for="usuario">Usuário:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" minlength="4" maxlength="24" placeholder="Digite o nome de Usuário">
+                    <input type="text" class="form-control" id="usuario" name="usuario" minlength="4" maxlength="24" placeholder="Usuário">
                 </div>
 
                 <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" class="form-control" id="senha" name="senha" minlength="4" maxlength="24" placeholder="Digite sua senha">
+                    <input type="password" class="form-control" id="senha" name="senha" minlength="4" maxlength="24" placeholder="Senha">
                 </div>
-                <button type="submit" class="btn btn-default">Entrar</button>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                </div>
+
             </form>
+        </div>
+
     </div>
 </body>
 
