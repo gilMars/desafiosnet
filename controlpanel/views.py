@@ -1,15 +1,22 @@
 from django.shortcuts import render
+
+# Anotação para autenticação
 from django.contrib.auth.decorators import login_required
 
-
+# Import para autenticação de cadastro de usuário como também de login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
 from .forms import UserRegistrationForm
 
+
+from .models import Cliente
+from .models import Endereco
+
 @login_required(login_url='/')
 def painelUser(request):
+    clientes 
     return render(request, 'controlpanel/painel.html', {})
 # Create your views here.
 
