@@ -10,5 +10,4 @@ def registerUser(request):
 @login_required(login_url='/')
 def painelUser(request):
     return render(request, 'controlpanel/painel.html', {})
-
 # Create your views here.
