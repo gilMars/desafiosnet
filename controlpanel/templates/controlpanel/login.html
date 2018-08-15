@@ -47,7 +47,7 @@
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="/cadastro">Cadastras-se</a>
+                        <a class="btn btn-primary" href="#">Cadastras-se</a>
                     </div>
                 </div>
                 <div id="forget" class="row">
@@ -55,7 +55,9 @@
                         <a href="#">Esqueceu a senha?</a>
                     </div>
                 </div>
-
+                <div class="row">
+                    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                </div>
             </form>
         </div>
 
