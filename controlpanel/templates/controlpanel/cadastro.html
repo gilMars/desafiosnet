@@ -39,15 +39,15 @@
                         {% csrf_token %}
                         <h2 class="text-center text-primary">Cadastre-se</h2>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Nome Completo" required>
+                        <input type="text" class="form-control" name="username" minlength="4" maxlength="32" placeholder="Nome Completo" required>
                     </div>
         
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                        <input type="email" class="form-control" name="email" minlength="4" maxlength="32" placeholder="E-mail" required>
                     </div>
         
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                        <input type="password" class="form-control" name="password" minlength="4" maxlength="32" placeholder="Senha" required>
                     </div>
         
                     <button type="submit" class="btn btn-primary">Cadastrar-se</button>
