@@ -15,21 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-
-    # URL para página de login costumizada
-    path('', auth_views.login, {'template_name': 'controlpanel/login.html'}),
-
-    # URL para logout
-    path('logout/', auth_views.logout, {'next_page': '/'}),
-
     # Templates costumizados
     path('', include('controlpanel.urls')),
 
-    # Autenticação por rede social
-    path('oauth/', include('social_django.urls', namespace='social')),
 
 ]
