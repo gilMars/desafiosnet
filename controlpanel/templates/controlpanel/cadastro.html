@@ -27,6 +27,11 @@
 </head>
 
 <body>
+    {% if form.errors %}
+    {% for error in form.non_field_errors %}
+    <script>alert('{{error}}')</script>
+    {% endfor %}
+    {% endif %}
     <div class="container">
         
         <div id="form-panel">
