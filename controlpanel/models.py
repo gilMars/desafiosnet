@@ -1,21 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Cliente(models.Model):
-    user_id  = models.ForeignKey(User, on_delete=models.CASCADE)
-    nome     = models.CharField(max_length=56)
-    cpf      = models.CharField(max_length=11)
+    cpf = models.CharField(primary_key=True, max_length=11)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=56)
     telefone = models.CharField(max_length=11)
-    email    = models.CharField(max_length=256)
-    endereco = models.OneToOneField('Endereco', on_delete=models.CASCADE)
+    email = models.CharField(max_length=256)
+
 
 class Endereco(models.Model):
-    clienteEndereco  = models.OneToOneField('Cliente', on_delete=models.CASCADE)
-    cep      = models.CharField(max_length=8)
-    clienteEndereco = models.CharField(max_length=512)
-    bairro   = models.CharField(max_length=512)
-    cidade   = models.CharField(max_length=512)
-    numero   = models.IntegerField()
     UF = (
         ('AC', 'Acre'),
         ('AL', 'Alagoas'),
@@ -45,5 +40,14 @@ class Endereco(models.Model):
         ('SE', 'Sergipe'),
         ('TO', 'Tocantins')
     )
+
+    cliente_id = models.ForeignKey(
+        'Cliente', on_delete=models.CASCADE, unique=True)
+    cep = models.CharField(max_length=8)
+    rua = models.CharField(max_length=512)
+    bairro = models.CharField(max_length=512)
+    cidade = models.CharField(max_length=512)
+    numero = models.IntegerField()
+    uf = models.CharField(max_length=2, choices=UF)
 
 # Create your models here.
