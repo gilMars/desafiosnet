@@ -38,3 +38,6 @@ def cadastro(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'controlpanel/cadastro.html', {'form' : form})
+
+#def listar_clientes(request):
+
