@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Mayer's CSS Reset -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <!-- Estilo da página -->
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="form-panel">
+            <div class="text-center">
+                <h2 class="text-primary">Login</h2>
+            </div>
+            <form method="post">
+                {% csrf_token %} {{ form.as_p }}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="usuario" minlength="4" maxlength="24" placeholder="Usuário" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="senha" minlength="4" maxlength="24" placeholder="Senha" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-primary" href="#">Cadastras-se</a>
+                    </div>
+                </div>
+                <div id="forget" class="row">
+                    <div class="col-md-6">
+                        <a href="#">Esqueceu a senha?</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</body>
+
+</html>
