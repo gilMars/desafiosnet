@@ -36,11 +36,11 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" minlength="4" maxlength="24" placeholder="Usuário" required>
+                    <input type="text" class="form-control" name="username" minlength="4" maxlength="32" placeholder="Usuário" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" minlength="4" maxlength="24" placeholder="Senha" required>
+                    <input type="password" class="form-control" name="password" minlength="4" maxlength="32" placeholder="Senha" required>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
