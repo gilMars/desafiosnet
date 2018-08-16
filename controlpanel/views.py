@@ -14,9 +14,38 @@ from .forms import DeletarClienteForm
 from .models import Cliente
 from .models import Endereco
 
+from django.conf import settings
+
+
+
+
+def registrar(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        validForm = form.is_valid()
+        if validForm:
+            userObj = form.cleaned_data
+            username = userObj['username']
+            email = userObj['email']
+            password = userObj['password']
+            userExists = User.objects.filter(username=username).exists()
+            emailExists = User.objects.filter(email=email).exists()
+            if userExists:
+                form.add_error(None, "Usuário já cadastrado")
+            elif emailExists:
+                form.add_error(None, "Email já está em uso")
+            validForm = form.is_valid()
+            if validForm:
+                User.objects.create_user(username, email, password)
+                user = authenticate(username=username, password=password)
+                login(request, user)
+                return HttpResponseRedirect('/')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'controlpanel/cadastro.html', {'form': form})
 
 @login_required(login_url='/')
-def painelUser(request):
+def listar_clientes(request):
     clientes = Cliente.objects.filter(user_id=request.user)
     return render(request, 'controlpanel/painel.html', {'clientes': clientes})
 
@@ -46,7 +75,7 @@ def cadastrar_cliente(request):
                 Endereco.objects.create(cliente_id=cliente, cep=cep, endereco=endereco, cidade=cidade, numero=numero, estado=estado, pais=pais)
     else:
         form = CadastroClienteForm()
-    return render(request, 'controlpanel/cadastrar.html', {'form': form})
+    return render(request, 'controlpanel/cadastrar.html', {'form': form, 'MAPS_API_KEY': settings.MAPS_API_KEY})
 
 
 @login_required(login_url='/')
@@ -55,33 +84,18 @@ def deletar_cliente(request):
     if request.method == 'POST':
         form = DeletarClienteForm(request.POST)
         if form.is_valid():
-            Cliente.objects.filter(nome=form.cleaned_data['nome']).delete()
+            clientes.get(nome=form.cleaned_data['nome']).delete()
     else:
         form = DeletarClienteForm()
     return render(request, 'controlpanel/deletar.html', {'form': form, 'clientes': clientes})
 
-
-def registrar(request):
+@login_required(login_url='/')
+def modificar_cliente(request):
+    clientes = Cliente.objects.filter(user_id=request.user)
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        validForm = form.is_valid()
-        if validForm:
-            userObj = form.cleaned_data
-            username = userObj['username']
-            email = userObj['email']
-            password = userObj['password']
-            userExists = User.objects.filter(username=username).exists()
-            emailExists = User.objects.filter(email=email).exists()
-            if userExists:
-                form.add_error(None, "Usuário já cadastrado")
-            elif emailExists:
-                form.add_error(None, "Email já está em uso")
-            validForm = form.is_valid()
-            if validForm:
-                User.objects.create_user(username, email, password)
-                user = authenticate(username=username, password=password)
-                login(request, user)
-                return HttpResponseRedirect('/')
+        form = DeletarClienteForm(request.POST)
+        if form.is_valid():
+            clientes.get(nome=form.cleaned_data['nome']).delete()
     else:
-        form = UserRegistrationForm()
-    return render(request, 'controlpanel/cadastro.html', {'form': form})
+        form = DeletarClienteForm()
+    return render(request, 'controlpanel/modificar.html', {'form': form, 'clientes': clientes})
