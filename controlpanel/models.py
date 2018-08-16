@@ -6,14 +6,12 @@ class Cliente(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=56)
     telefone = models.CharField(max_length=11)
-    email = models.CharField(max_length=256)
 
 
 class Endereco(models.Model):
-    cliente_id = models.OneToOneField('Cliente', on_delete=models.CASCADE)
+    cliente_id = models.OneToOneField(Cliente, on_delete=models.CASCADE)
     cep = models.CharField(max_length=8)
-    rua = models.CharField(max_length=512)
-    bairro = models.CharField(max_length=512)
+    endereco = models.CharField(max_length=512)
     cidade = models.CharField(max_length=512)
     numero = models.IntegerField()
     estado = models.CharField(max_length=256)
