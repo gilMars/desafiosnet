@@ -6,6 +6,13 @@ class UserRegistrationForm(forms.Form):
     password = forms.CharField(required = True, label = 'Password', min_length= 4,  max_length = 32, widget = forms.PasswordInput())
 
 class CadastroClienteForm(forms.Form):
-    nome = models.CharField(required = True, label = 'Nome', max_length=56)
-    telefone = models.CharField(required = True, label = 'Telefone', max_length=11)
-    email = models.CharField(required = True, label = 'E-mail',max_length=256)
+    nome = forms.CharField(required = True, max_length=56)
+    telefone = forms.CharField(required = True, max_length=11)
+    email = forms.CharField(required = True, max_length=256)
+    cep = forms.CharField(required = True, max_length=8)
+    endereco = forms.CharField(max_length=512)
+    bairro = forms.CharField( max_length=512)
+    cidade = forms.CharField(max_length=512)
+    numero = forms.IntegerField()
+    estado = forms.CharField(max_length=256)
+    pais = forms.CharField( max_length=256)
