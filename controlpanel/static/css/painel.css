@@ -16,6 +16,7 @@ body, html, .container-fluid {
     display: table;
     width: 100%;
 }
+
 #menu {
     background-color:rgb(61, 60, 60);
     /* position: fixed; */
@@ -41,5 +42,10 @@ body, html, .container-fluid {
 }
 
 #cadastrar {
-    margin: 10%;
+    margin: 5%;
+    height: 300px;
+}
+
+#cadastrar .row {
+    height: 25%;
 }
