@@ -45,7 +45,7 @@
                             <a class="nav-link" href="#">Modificar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Deletar cliente</a>
+                            <a class="nav-link" href="{% url 'deletar' %}">Deletar cliente</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Sair</a>
@@ -59,9 +59,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col">CPF</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">E-mail</th>
                             <th scope="col">Endereço</th>
                             <th scope="col">Número</th>
                             <th scope="col">Cidade</th>
@@ -74,10 +72,8 @@
                         {% for cliente in clientes %}
                         <tr>
                             <td>{{cliente.nome}}</td>
-                            <td>{{cliente.cpf}}</td>
                             <td>{{cliente.telefone}}</td>
-                            <td>{{cliente.email}}</td>
-                            <td>{{cliente.endereco.rua}}</td>
+                            <td>{{cliente.endereco.endereco}}</td>
                             <td>{{cliente.endereco.numero}}</td>
                             <td>{{cliente.endereco.cidade}}</td>
                             <td>{{cliente.endereco.estado}}</td>

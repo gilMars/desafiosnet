@@ -54,7 +54,7 @@
                             <a class="nav-link" href="#">Modificar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Deletar cliente</a>
+                            <a class="nav-link" href="{% url 'deletar' %}">Deletar cliente</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Sair</a>
@@ -63,7 +63,7 @@
                 </nav>
             </div>
             <div class="col-md-9 no-float">
-                <form id="cadastrar" class="form-horizontal" method="post" role="form">
+                <form id="main" class="form-horizontal" method="post" role="form">
                         {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-4">
