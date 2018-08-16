@@ -34,6 +34,11 @@
 </head>
 
 <body>
+        {% if form.errors %}
+    {% for error in form.non_field_errors %}
+    <script>alert('{{error}}')</script>
+    {% endfor %}
+    {% endif %}
     <div class="container-fluid">
         <div class="row">
             <div id="menu" class="col-md-3 no-float">
@@ -58,8 +63,8 @@
                 </nav>
             </div>
             <div class="col-md-9 no-float">
-                <form id="cadastrar" class="form-horizontal" role="form">
-
+                <form id="cadastrar" class="form-horizontal" method="post" role="form">
+                        {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
