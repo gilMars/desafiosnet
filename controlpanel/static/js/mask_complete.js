@@ -3,7 +3,10 @@ $(function () {
     // Mascara de telefone e CEP
     $('#telefoneCliente').mask('(00) 0000-0000');
     $('#cepCliente').mask('00000-000');
-
+    $('#cadastrar').submit(function(){
+        $('#telefoneCliente').unmask();
+        $('#cepCliente').unmask();
+    });
     function limpa_formulario_cep() {
         // Limpa valores do formulário de cep.
         $("#enderecoCliente").val("");
