@@ -51,7 +51,7 @@
                             <a class="nav-link" href="{% url 'cadastrar' %}">Cadastrar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Modificar cliente</a>
+                            <a class="nav-link" href="{% url 'modificar' %}">Modificar cliente</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Deletar cliente</a>
@@ -85,10 +85,24 @@
 
                         </div>
                     </div>
-
+                </form>
+                {% if form.errors %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error</strong> {{error}}.
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if form.is_valid %}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Successo</strong> Cliente deletado com sucesso.
+                </div>
+            {% endif %}
             </div>
 
-            </form>
+            
         </div>
     </div>
 </body>
