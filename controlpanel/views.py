@@ -16,8 +16,8 @@ from .models import Endereco
 
 @login_required(login_url='/')
 def painelUser(request):
-    clientes 
-    return render(request, 'controlpanel/painel.html', {})
+    clientes = Cliente.objects.all()
+    return render(request, 'controlpanel/painel.html', {'clientes':clientes})
 # Create your views here.
 
 
