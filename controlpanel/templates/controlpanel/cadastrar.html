@@ -36,7 +36,7 @@
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Litar clientes</a>
+                            <a class="nav-link active" href="{% url 'listar' %}">Litar clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Cadastrar cliente</a>
@@ -48,34 +48,36 @@
                             <a class="nav-link" href="#">Deletar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Sair</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-9 no-float">
-                <table class="table table-hover">
-                    <caption>Lista de Clientes</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">CPF</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>Gilmar Bezerra</td>
-                            <td>(83)99999-9999</td>
-                            <td>111.111.111-11</td>
-                        </tr>
-                    </tbody>
-
-                </table>
+                <form id="cadastrar" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nomeCliente">Nome:</label>
+                        <input type="text" id="nomeCliente" name="nome" class="form-control" minlength="4" maxlength="56" placeholder="Digite o nome do cliente"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefoneCliente">Telefone:</label>
+                        <input type="text" id="telefoneCliente" name="telefone" class="form-control" minlength="4" maxlength="56" placeholder="Digite telefone do cliente"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cepCliente">CEP:</label>
+                        <input type="text" id="cepCliente" name="cep" class="form-control" minlength="4" maxlength="56" placeholder="Digite o CEP do cliente"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="enderecoCliente">Endereço:</label>
+                        <input type="text" id="enderecoCliente" name="endereco" class="form-control" minlength="4" maxlength="56" placeholder="Digite o endereço do cliente"
+                            required>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
