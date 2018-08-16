@@ -16,3 +16,6 @@ class CadastroClienteForm(forms.Form):
     numero = forms.IntegerField()
     estado = forms.CharField(max_length=256)
     pais = forms.CharField( max_length=256)
+
+class DeletarClienteForm(forms.Form):
+    nome = forms.CharField(required = True, max_length=56)
