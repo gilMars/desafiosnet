@@ -20,8 +20,10 @@ def painelUser(request):
     return render(request, 'controlpanel/painel.html', {'clientes':clientes})
 # Create your views here.
 
+def cadastrar_cliente(request):
+    return render(request, 'controlpanel/cadastrar.html')
 
-def cadastro(request):
+def registrar(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         validForm = form.is_valid()

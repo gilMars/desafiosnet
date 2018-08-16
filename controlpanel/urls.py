@@ -4,7 +4,10 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
 
 
-    path('painel/', views.painelUser, name='painelUser'),
+    path('painel/', views.painelUser, name='listar'),
+
+    # Cadastrar clientes
+    path('painel/cadastrar', views.cadastrar_cliente, name='cadastrar'),
 
     # URL para página de login costumizada
     path('', auth_views.login, {'template_name': 'controlpanel/login.html'}, name='login'),
@@ -15,5 +18,5 @@ urlpatterns = [
     # Autenticação por rede social
     path('oauth/', include('social_django.urls', namespace='social')),
 
-    path('cadastro/', views.cadastro, name='cadastro')
+    path('registrar/', views.registrar, name='registrar')
 ]
