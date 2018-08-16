@@ -133,3 +133,5 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = ''  # Coloque aqui o seu App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '' # Coloque aqui a sua chave secreta
+
+MAPS_API_KEY = ''
