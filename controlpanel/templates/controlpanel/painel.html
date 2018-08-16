@@ -48,28 +48,43 @@
                             <a class="nav-link" href="#">Deletar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Sair</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-9 no-float">
-                <table class="table table-hover">
+                <table class="table">
                     <caption>Lista de Clientes</caption>
                     <thead>
                         <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
                             <th scope="col">CPF</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Número</th>
+                            <th scope="col">Cidade</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">País</th>
+                            <th scope="col">CEP</th>
                         </tr>
                     </thead>
-
                     <tbody>
+                        {% for cliente in clientes %}
                         <tr>
-                            <td>Gilmar Bezerra</td>
-                            <td>(83)99999-9999</td>
-                            <td>111.111.111-11</td>
+                            <td>{{cliente.nome}}</td>
+                            <td>{{cliente.cpf}}</td>
+                            <td>{{cliente.telefone}}</td>
+                            <td>{{cliente.email}}</td>
+                            <td>{{cliente.endereco.rua}}</td>
+                            <td>{{cliente.endereco.numero}}</td>
+                            <td>{{cliente.endereco.cidade}}</td>
+                            <td>{{cliente.endereco.estado}}</td>
+                            <td>{{cliente.endereco.pais}}</td>
+                            <td>{{cliente.endereco.cep}}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
 
                 </table>
