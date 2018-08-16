@@ -41,11 +41,6 @@ body, html, .container-fluid {
     transition: background 1s ease;
 }
 
-#cadastrar {
+#main {
     margin: 5%;
-    height: 300px;
-}
-
-#cadastrar .row {
-    height: 25%;
 }
