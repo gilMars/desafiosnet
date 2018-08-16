@@ -1,4 +1,6 @@
 controlpanel/__pycache__
+controlpanel/migrations
 servicenet/__pycache__
+servicenet/migrations
 servicenet.code-workspace
 db.sqlite3
