@@ -9,6 +9,8 @@ urlpatterns = [
     # Cadastrar clientes
     path('painel/cadastrar', views.cadastrar_cliente, name='cadastrar'),
 
+    path('painel/deletar', views.deletar_cliente, name='deletar'),
+
     # URL para página de login costumizada
     path('', auth_views.login, {'template_name': 'controlpanel/login.html'}, name='login'),
 
