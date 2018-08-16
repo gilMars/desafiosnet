@@ -31,6 +31,7 @@
     <script src="{% static 'js/jquery.mask.js'%}"></script>
     <script src="{% static 'js/jquery.mask.min.js'%}"></script>
     <script src="{% static 'js/mask_complete.js'%}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_API_KEY}}=initMap"></script>
 </head>
 
 <body>
@@ -137,6 +138,17 @@
                     <!-- Fim do submit -->
 
                 </form>
+                <div id="map" style="height: 100%"></div>
+                <script>
+
+                        function initMap() {
+                            var mapProp= {
+                                center:new google.maps.LatLng(51.508742,-0.120850),
+                                zoom:5,
+                            };
+                            var map=new google.maps.Map(document.getElementById("map"),mapProp);
+                          }
+                      </script>
                 {% if form.errors %}
                     {% for error in form.non_field_errors %}
                         <div class="alert alert-danger alert-dismissible">
