@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django import forms
 from .forms import UserRegistrationForm
 from .forms import CadastroClienteForm
+from .forms import DeletarClienteForm
 from .models import Cliente
 from .models import Endereco
 
@@ -38,12 +39,13 @@ def cadastrar_cliente(request):
         pais = clienteObj['pais']
         # clienteExists = Cliente.objects.filter(user_id=request.user,nome=nome).exists()
         # if userExists:
-        #form.add_error(None, "Cliente já está cadastrado")
+        # form.add_error(None, "Cliente já está cadastrado")
         # validForm = form.is_valid()
         # if validForm:
         cliente = Cliente(user_id=request.user, nome=nome, telefone=telefone)
         cliente.save()
-        Endereco.objects.create(cliente_id=cliente, cep=cep, endereco=endereco, cidade=cidade, numero=numero, estado=estado, pais=pais)
+        Endereco.objects.create(cliente_id=cliente, cep=cep, endereco=endereco,
+                                cidade=cidade, numero=numero, estado=estado, pais=pais)
     else:
         form = CadastroClienteForm()
     return render(request, 'controlpanel/cadastrar.html', {'form': form})
@@ -73,3 +75,15 @@ def registrar(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'controlpanel/cadastro.html', {'form': form})
+
+
+@login_required(login_url='/')
+def deletar_cliente(request):
+    clientes = Cliente.objects.filter(user_id=request.user)
+    if request.method == 'POST':
+        form = DeletarClienteForm(request.POST)
+        if form.is_valid():
+            Cliente.objects.filter(nome=form.cleaned_data['nome']).delete()
+    else:
+        form = DeletarClienteForm()
+    return render(request, 'controlpanel/deletar.html', { 'form':form, 'clientes':clientes })
