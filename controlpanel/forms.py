@@ -8,10 +8,8 @@ class UserRegistrationForm(forms.Form):
 class CadastroClienteForm(forms.Form):
     nome = forms.CharField(required = True, max_length=56)
     telefone = forms.CharField(required = True, max_length=11)
-    email = forms.CharField(required = True, max_length=256)
     cep = forms.CharField(required = True, max_length=8)
     endereco = forms.CharField(max_length=512)
-    bairro = forms.CharField( max_length=512)
     cidade = forms.CharField(max_length=512)
     numero = forms.IntegerField()
     estado = forms.CharField(max_length=256)

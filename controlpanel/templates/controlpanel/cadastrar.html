@@ -34,11 +34,7 @@
 </head>
 
 <body>
-        {% if form.errors %}
-    {% for error in form.non_field_errors %}
-    <script>alert('{{error}}')</script>
-    {% endfor %}
-    {% endif %}
+
     <div class="container-fluid">
         <div class="row">
             <div id="menu" class="col-md-3 no-float">
@@ -64,7 +60,7 @@
             </div>
             <div class="col-md-9 no-float">
                 <form id="main" class="form-horizontal" method="post" role="form">
-                        {% csrf_token %}
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -109,6 +105,7 @@
                         </div>
                     </div>
 
+                    <!-- Grupo que comporta Estado, País -->
                     <div class="row">
 
                         <div class="col-sm-4">
@@ -124,8 +121,11 @@
                                 <input type="text" id="paisCliente" name="pais" class="form-control" maxlength="56">
                             </div>
                         </div>
-                    </div>
 
+                    </div>
+                    <!-- Fim do Grupo -->
+
+                    <!-- Submit do form -->
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -134,11 +134,30 @@
 
                         </div>
                     </div>
+                    <!-- Fim do submit -->
+
+                </form>
+                {% if form.errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error</strong> {{error}}.
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if form.is_valid %}
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Successo</strong> Cliente cadastrado com sucesso.
+                    </div>
+                {% endif %}
+
 
             </div>
 
-            </form>
+
         </div>
+
     </div>
 </body>
 
