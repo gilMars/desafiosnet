@@ -27,6 +27,9 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'js/modificar_cliente.js' %}"></script>
+
 </head>
 
 <body>
@@ -36,44 +39,133 @@
                 <nav>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Litar clientes</a>
+                            <a class="nav-link active" href="{% url 'listar' %}">Litar clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cadastrar cliente</a>
+                            <a class="nav-link" href="{% url 'cadastrar' %}">Cadastrar cliente</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Modificar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Deletar cliente</a>
+                            <a class="nav-link" href="{% url 'deletar' %}">Deletar cliente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Sair</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-9 no-float">
-                <table class="table table-hover">
-                    <caption>Lista de Clientes</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">CPF</th>
-                        </tr>
-                    </thead>
+                <form id="main" class="form-horizontal" method="post">
+                        {% csrf_token %}
+                    <div class="form-group">
+                        <label for="selectNome">Selecione o cliente que deseja editar</label>
+                        <select class="form-control" name="id" id="selectNome">
+                            <option>Selecionar cliente</option>
+                            {% for cliente in clientes %}
+                            <option value="{{cliente.id}}"
+                            nome="{{cliente.nome}}"
+                            telefone="{{cliente.telefone}}"
+                            cep="{{cliente.endereco.cep}}"
+                            endereco="{{cliente.endereco.endereco}}"
+                            numero="{{cliente.endereco.numero}}"
+                            estado="{{cliente.endereco.estado}}"
+                            cidade="{{cliente.endereco.cidade}}"
+                            pais="{{cliente.endereco.pais}}">{{cliente.nome}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="nomeCliente">Nome:</label>
+                                <input type="text" id="nomeCliente" name="nome" class="form-control" minlength="4" maxlength="56" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="telefoneCliente">Telefone:</label>
+                                <input type="text" id="telefoneCliente" name="telefone" class="form-control" maxlength="11">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="cepCliente">CEP:</label>
+                                <input type="text" id="cepCliente" name="cep" class="form-control" minlength="8" maxlength="8" required>
+                            </div>
+                        </div>
+                    </div>
 
-                    <tbody>
-                        <tr>
-                            <td>Gilmar Bezerra</td>
-                            <td>(83)99999-9999</td>
-                            <td>111.111.111-11</td>
-                        </tr>
-                    </tbody>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="enderecoCliente">Endereço:</label>
+                                <input type="text" id="enderecoCliente" name="endereco" class="form-control" maxlength="56">
+                            </div>
+                        </div>
 
-                </table>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="numeroCliente">Número:</label>
+                                <input type="text" id="numeroCliente" name="numero" class="form-control" maxlength="56">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="cidadeCliente">Cidade:</label>
+                                <input type="text" id="cidadeCliente" name="cidade" class="form-control" maxlength="56">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grupo que comporta Estado, País -->
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="estadoCliente">Estado:</label>
+                                <input type="text" id="estadoCliente" name="estado" class="form-control" maxlength="56">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="paisCliente">País:</label>
+                                <input type="text" id="paisCliente" name="pais" class="form-control" maxlength="56">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Fim do Grupo -->
+
+                    <!-- Submit do form -->
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <button class="btn btn-primary" type="submit">Modificar</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Fim do submit -->
+
+                </form>
+                {% if form.errors %} {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error</strong> {{error}}.
+                </div>
+                {% endfor %} {% endif %} {% if form.is_valid %}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Successo</strong> Cliente deletado com sucesso.
+                </div>
+                {% endif %}
             </div>
+
+
         </div>
     </div>
 </body>
